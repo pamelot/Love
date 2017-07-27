@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_field %}
+
+{% block content %}
+
+
+<div class="container" style="font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; margin-left: 50px; padding: 0; width: 300px">
+
+	<form class="ui form" method="POST" action="" style="margin-top: 60px; padding: 0 0 20px 0">
+
+	  <button class='btn' style="width: 70%; color: #ffffff; background-color: #F1861B; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 16px; margin-bottom: 10px" type="submit" id="contacts" name="submit"  label="contacts" value='contacts'>Upload Contacts</button>
+	  <button class='btn' style="width: 70%; color: #ffffff; background-color: #F1861B; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 16px; margin-bottom: 10px" type="submit" id="reminders" name="submit"  label="reminders" value='reminders'>Upload Reminders</button>
+	  <button class='btn' style="width: 70%; color: #ffffff; background-color: #F1861B; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 16px" type="submit" id="notes" name="submit"  label="notes" value='notes'>Upload Notes</button>
+	</form>
+</div>
+
+{% endblock %}

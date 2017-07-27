@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; color: #464646; margin-left: 40px; margin-right: 40px margin-top: 50px; padding: 0; width: 100%">
+  <p style="background-color: #FFF000; color: #000000; width: 200px; font-size: 16px">{{ message }}</p>
+  <div class="row justify-content-between" style="color: #F1861B; border-radius: .2em; margin-left: 0">
+    <div class="col-lg 3 col-md-4  col-sm-10 col-xs-9" style="background-color: #ffffff; margin-right: 20px; padding: 10px; margin-bottom: 20px">
+      <h2 style="font-size: 24px; color: #464646; margin-top: 10px; margin-bottom: 0">Reminders</h2><br>
+      {% for reminder in reminders %}
+        {% if reminder.content %}
+        <form class="ui form" method="POST" action="/" style="margin-right: 0; padding: 0 0 10px 0; font-size: 14px">
+          <div class="panel panel-default" style="border-color: #F8F9F9; margin-bottom: 0">
+            <div class="panel-body" style="display: flex; word-wrap: break-word; border-color: #ffffff; background-color: #ededed">
+              <div style="display: flex; flex-direction: column; justify-content: space-between">
+                <div style="margin-right: 20px; min-width: 180px; margin-bottom: 0">
+                  <p style="margin-bottom: 0; font-size: 16px">{{ reminder.date.strftime('%m-%d-%Y') }}</p>
+                  <p style="color: #464646; margin-bottom: 5px; word-wrap: break-word">{{ reminder.content }}</p>
+                  <input type="hidden" name="id" value="{{ reminder.id }}">
+                  <br>
+                  <div style="display: flex; margin-left: -4px; margin-top: 5px; padding: 0">
+                    <button class='btn btn-primary btn-sm' style="margin: 0 6px 0 0; width: 65px; color: #ffffff; background-color: #4183C4; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 12px; height: 30px" type="submit" id="cancel" name="submit"  label="cancel" value='cancel'>Cancel</button>
+                    <button class='btn btn-primary btn-sm' style="margin: 0 6px 0 0; width: 65px; color: #ffffff; background-color: #4183C4; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 12px; height: 30px" type="submit" id="snooze" name="submit"  label="snooze" value='snooze'>Snooze</button>
+                    <button class='btn btn-primary btn-sm' style="margin: 0 60px 0 0; width: 65px; color: #ffffff; background-color: #4183C4; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 12px; height: 30px" type="submit" id="cancel" name="submit"  label="done" value='done'>Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        {% endif %}
+      {% endfor %}
+      <div class="col-lg 12 col-md-12  col-sm-12 col-xs-12">
+        <form class="ui form" method="POST" action="/" style="margin-top: 30px; margin-right: 0; padding: 0 0 20px 0; font-size: 16px">
+          <h3 style="margin-bottom: 20px; font-size: 18px">Add A New Reminder</h3>
+          <div class="form-group" style="margin-bottom: 10px; margin-right: 0">
+            <input type="text" name="content" class="form-control required" style="line-height: 1.2857; background-color: #ededed; font-size: 16px; height: 80px; width: 260px; margin-bottom: 5px">
+            <label>Reminder Text</label>
+          </div>
+          <div class="form-group" style="margin-bottom: 10px">
+            <input id="date" type="date" data-date="" data-date-format="DD MMMM YYYY" name="date" class="form-control" style="background-color: #ededed; font-size: 16px; height: 40px; width: 200px; margin-bottom: 5px">
+            <label>Due Date</label>
+          </div>
+          <p style="background-color: #FFF000; color: #000000; width: 200px">{{ message }}</p>
+          <button class='small ui button' style="margin: 0 0 40px 0; width: 40%; color: #ffffff; background-color: #F1861B; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 16px" type="submit" id="save" name="submit"  label="save" value='save'>Save</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg 3 col-md-4  col-sm-10 col-xs-9" style="background-color: #ffffff; margin-right: 20px; padding: 10px; margin-bottom: 20px">
+      <h2 style="font-size: 24px; color: #464646; margin-top: 10px; margin-bottom: 0">Keep In Touch</h2><br>
+      {% for old_contact in old_contacts %}
+      <form class="ui form" method="POST" action="/" style="margin-right: 0; padding: 0 0 10px 0; font-size: 16px">
+        <div class="panel panel-default" style="border-color: #F8F9F9; margin-bottom: 0">
+          <div class="panel-body" style="word-wrap: break-word; background-color: #ededed">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between">
+              <div>
+                <a href="{{ url_for('contact_edit', id=old_contact.id) }}" style="text-align: center; color: #4183C4; font-size: 16px">{{ old_contact.first_name }} {{ old_contact.last_name }}</a>
+                <div style="font-size: 14px; margin-bottom: 5px">Alert Date: {{ old_contact.alert_date.strftime('%m-%d-%Y') }}</div>
+                <div style="font-size: 14px; margin-bottom: 5px">Last Updated: {{ old_contact.last_updated.strftime('%m-%d-%Y') }}</div>
+                <input type="hidden" name="contact_id" value="{{ old_contact.id }}">
+              </div>
+              <div style="display: flex; margin-left: -4px; margin-top: 5px">
+                <button class='btn btn-primary btn-sm' style="margin: 0 6px 0 0; color: #ffffff; background-color: #4183C4; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 12px; height: 30px" type="submit" id="snooze" name="submit"  label="update" value='update'>Done</button>
+                <button class='btn btn-primary btn-sm' style="margin: 0 6px 0 0; color: #ffffff; background-color: #4183C4; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 12px; height: 30px" type="submit" id="snooze_alert" name="submit"  label="snooze_alert" value='snooze_alert'>Snooze</button>
+                <button class='btn btn-primary btn-sm' style="margin: 0 6px 0 0; color: #ffffff; background-color: #4183C4; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 12px; height: 30px" type="submit" id="cancel_alert" name="submit"  label="cancel_alert" value='cancel_alert'>Cancel Alerts</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      {% endfor %}
+    </div>
+    <div class="col-lg 3 col-md-3  col-sm-10 col-xs-9" style="background-color: #ffffff; padding: 10px">
+      <h2 style="font-size: 24px; color: #000000; margin-top: 10px; margin-bottom: 0">Recent Updates</h2>
+      <h4 style="margin-bottom: -20px">Contacts</h4>
+      <br>
+      {% for contact in contacts %}
+        <div class="panel panel-default" style="border-color: #F8F9F9; margin-bottom: 10px">
+          <div class="panel-body" style="word-wrap: break-word; background-color: #ededed">
+            <a href="{{ url_for('contact_edit', id=contact.id) }}" style="text-align: center; color: #4183C4; font-size: 16px">{{ contact.first_name }} {{ contact.last_name }}</a>
+            <p style="margin-top: 5px">Last Updated: {{ contact.last_updated.strftime('%m-%d-%Y') }}</p>
+          </div>
+        </div>
+      {% endfor %}
+      <h4 style="margin-bottom: 0; margin-top: 20px">Notes</h4>
+      {% for note in notes %}
+        {% if note.content %}
+        <div class="panel panel-default" style="border-color: #F8F9F9; margin-bottom: 10px">
+          <div class="panel-body" style="word-wrap: break-word; background-color: #ededed">
+            <p>Date: {{ note.timestamp.strftime('%m-%d-%Y') }}</p>
+            <p style="color: #000000">{{ note.content }}</p>
+            <a href="{{ url_for('contact_edit', id=note.contact.id) }}" style="text-align: center; color: #4183C4; font-size: 16px">{{ note.contact.first_name }} {{ note.contact.last_name }}</a>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+

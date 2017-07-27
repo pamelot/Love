@@ -1,0 +1,180 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_field %}
+
+{% block content %}
+
+<style type="text/css">
+            label {
+              display: block;
+              font-size: 14px;
+            }
+            input {
+                background-color: transparent;
+                font-size: 18px;
+                height: 40px;
+                width: 320px;
+                margin: 0 20px 0 0;
+                padding-left: 0;
+                box-shadow: none;
+                border: none;
+                color: #000000;
+            }
+            textarea {
+              font-size: 14px;
+              height: 60px;
+              width: 120%;
+              margin: 0 20px 0 0;
+              color: #000000;
+            }
+            .checkbox input[type=checkbox] {
+                background-color: transparent;
+                font-size: 16px;
+                height: 25px;
+                width: 25px;
+                margin: 5px 5px 0 5px;
+                padding-left: 0;
+                box-shadow: none;
+                border: none;
+                color: #000000;
+                position: relative;
+            }
+            ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                color: #D0D3D4;
+                font-size: 16px;
+            }
+            ::-moz-placeholder { /* Firefox 19+ */
+                color: #D0D3D4;
+                font-size: 16px;
+            }
+            :-ms-input-placeholder { /* IE 10+ */
+              color: #D0D3D4;
+              font-size: 16px;
+            }
+            :-moz-placeholder { /* Firefox 18- */
+              color: #D0D3D4;
+              font-size: 16px;
+            }
+</style>
+
+<div class="col-lg 7 col-md-10  col-sm-10 col-xs-10" style="color: #F1861B; background-color: #ffffff; margin: 20px 30px 40px 30px; padding: 20px">
+  <form action='/contact_edit/{{ contact.id }}' class="form-inline lead-big" role="form" method='POST' style="font-size: 16px">
+    <div style="margin-left: 20px">
+      <div>
+        <div style="min-width: 300px">
+          <h4 style="margin-top: 10px; margin-bottom: 20px; font-size: 26px; color: #337ab7"><b>{{ contact.first_name }} {{ contact.last_name }}</b></h4>
+          <p style="margin-bottom: 0; font-size: 14px; color: #F1861B; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif">Last Updated: {{ contact.last_updated.strftime('%m-%d-%Y') }}</p>
+          <p style="font-size: 14px; color: #F1861B; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif">Alert Date: {% if contact.alert == True %}{{ contact.alert_date.strftime('%m-%d-%Y') }}{% else %} None {% endif %}</p>
+        </div>
+        <div style="margin: 20px 0 0 0; font-size: 14px">
+          <h5 style="font-size: 18px; color: #337ab7">Important Notes:</h5>
+          {% for note in notes %}
+            {% if note.important == True %}
+              <p>{{ note.timestamp.strftime('%m-%d-%Y') }}  {{ note.content }}</p>
+            {% endif %}
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    <br>
+      <div class="col-lg 6 col-md-6  col-sm-6 col-xs-12">
+        <ul class="list-group">
+          <li class="list-group-item">
+            {{ form1.first_name(placeholder="click to add", value=contact.first_name) }}
+            <label>First Name</label>
+          </li>
+          <li class="list-group-item">
+            {{ form1.middle_name(placeholder="click to add", value=contact.middle_name) }}
+            <label>Middle Name</label>
+          </li>
+          <li class="list-group-item">
+            {{ form1.last_name(placeholder="click to add", value=contact.last_name) }}
+            <label>Last Name</label>
+          </li>
+          <li class="list-group-item">
+            {{ form1.email(placeholder="click to add", value=contact.email) }}
+            <label>Email</label>
+          </li>
+          <li class="list-group-item">
+            {{ form1.phone(placeholder="click to add", value=contact.phone) }}
+            <label>Phone</label>
+          </li>
+          <li class="list-group-item">
+            {{ form1.company(placeholder="click to add", value=contact.company) }}
+            <label>Company</label>
+          </li>
+          <li class="list-group-item">
+            {{ form1.position(placeholder="click to add", value=contact.position) }}
+            <label>Position</label>
+          </li>
+          <li class="list-group-item">
+            {{ form1.industry(placeholder="click to add", value=contact.industry) }}
+            <label>Industry</label>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg 6 col-md-6  col-sm-6 col-xs-12">
+        <ul class="list-group">
+          <li class="list-group-item">
+            {{ form1.address1(placeholder="click to add", value=contact.address1) }}
+            <label>Address</label>
+          </li>
+          <li class="list-group-item">
+            {{ form1.city(placeholder="click to add", value=contact.city) }}
+            <label>City</label>
+          </li>
+          <li class="list-group-item">
+            {{ form1.state(placeholder="click to add", value=contact.state) }}
+            <label>State</label>
+          </li>
+          <li class="list-group-item">
+            {{ form1.zipcode(placeholder="click to add", value=contact.zipcode) }}
+            <label>zipcode</label>
+          </li>
+          <li class="list-group-item">
+            <div class="checkbox" style="margin-bottom: 0">
+              {% if contact.alert == True %}
+                {{ form1.alert(checked='checked') }}
+              {% else %}
+                {{ form1.alert }}
+              {% endif %}
+            </div>
+            <label>Keep in Touch Alert</label>
+          </li>
+        </ul>
+        <button class='btn' style="margin: 10px 0 40px 0; width: 70%; color: #ffffff; background-color: #F1861B; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 16px; width: 60%" type="submit" id="update" name="submit"  label="update" value='update'>Update Contact</button>
+      </div>
+      <div class="col-lg 6 col-md-6  col-sm-6 col-xs-12">
+        <h2 style="font-size: 24px; color: #000000; margin-top: 10px">Notes for {{ contact.first_name }} {{ contact.last_name }}</h2>
+        <br>
+        {% for note in notes %}
+        {% if note.content %}
+        <div class="panel panel-default">
+          <div class="panel-body" style="word-wrap: break-word">
+            <p>{{ note.timestamp.strftime('%m-%d-%Y') }}</p>
+            <p style="color: #000000">{{ note.content }}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <div class="col-lg 12 col-md-12  col-sm-12 col-xs-12" style="padding-left: 0">
+          <form class="ui form" action='/new_note/{{ contact.id }}' method='POST' style="font-size: 20px; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif">
+            <h4 style="margin-top: 20px">Add New Note</h4>
+            <div class="form-group" style="margin-bottom: 10px; margin-right: 20px; color: black; width: 80%">
+              {{ form2.content(placeholder="click to add", value=none) }}
+            </div>
+            <div class="form-group">
+              <div class="checkbox" style="margin-bottom: 0">
+                {{ form2.important }}
+              </div>
+              <label>Mark as Important (will be pinned to top of page)</label>
+            </div>
+            <br><br>
+            <button class='btn' style="margin: 0 0 40px 0; width: 40%; color: #ffffff; background-color: #F1861B; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 16px" type="submit" id="save" name="submit"  label="save" value='save'>Save</button>
+          </form>
+        </div>
+      </div>
+    </form>
+  </div>
+
+{% endblock %}

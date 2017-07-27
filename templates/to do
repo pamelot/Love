@@ -1,0 +1,48 @@
+colors:
+blue
+#337ab7
+
+.strftime('%m-%d-%Y')
+
+to do
+
+seed data
+csv upload
+add in form input for 'country'
+fix top nav links
+require that notes have content
+groups
+
+[DONE] ability to show all contacts
+[DONE] ability to show lates contacts
+
+[DONE] fix url
+
+[DONE] add ability to flag note and pin to top of record
+
+[beyond mvp] personal notes on the home page?
+
+[DONE] if the alert/reminder date is today or past due, the snooze date should be + 1 week. If the date is in the future, it should be the original date + 1 week
+
+[beyond mvp] each contact could have a color that denotes how complete they are
+
+[DONE] ability to view all contacts
+
+[beyond mvp] ability to "show field" in query lists
+
+[DONE] stop loading all of the unessesary data
+
+[DONE] if user is not logged in, the login form must load
+
+[DONE] set limits for the queries
+
+[DONE] order the queries and admin page lists
+
+[DONE] fix create contact form - not responsive for mobile
+
+[DONE] add validations
+
+[DONE] fix adding in action buttons and actions for contact edit and note create page
+
+
+{{ form1.csrf_token }}

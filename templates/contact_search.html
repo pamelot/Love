@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_field %}
+{% block content %}
+
+<style type="text/css">
+            input {
+              width: 180px;
+              font-size: 16px;
+            }
+            .checkbox input[type=checkbox] {
+                background-color: transparent;
+                font-size: 20px;
+                height: 25px;
+                width: 30px;
+                margin: 5px 5px 0 0;
+                padding-left: 0;
+                box-shadow: none;
+                border: none;
+                color: #000000;
+                position: relative;
+            }
+</style>
+
+<div class="container" style="background-color: #ffffff; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; margin-left: 40px; margin-right: 20px; padding: 0">
+  <h2 style="margin-left: 20px; margin-top: 30px; font-size: 24px">Create or Find Contacts</h2>
+  <p style="background-color: #FFF000; margin-left: 20px; width: 200px">{{ message }}</p>
+  <div class="row justify-content-between" style="color: #F1861B; padding-left: 20px; margin-top: 40px; margin-bottom: 60px; border-radius: .2em; margin-left: 0">
+    <form action='contact_search' class="form-inline lead-big" role="form" method='POST' style="font-size: 16px">
+      {{ form.hidden_tag() }}
+      <div class="col-lg 2 col-md-2  col-sm-5 col-xs-5" style="margin-right: 50px">
+        <div class="form-group" style="margin-bottom: 10px">
+          {{ form.first_name }}
+          <p>First Name</p>
+        </div>
+        <div class="form-group" style="margin-bottom: 10px">
+          {{ form.middle_name }}
+          <p>Middle Name</p>
+        </div>
+        <div class="form-group" style="margin-bottom: 10px">
+          {{ form.last_name }}
+          <p>Last Name</p>
+        </div>
+        <div class="form-group" style="margin-bottom: 10px">
+          {{ form.email }}
+          <p>Email</p>
+        </div>
+      </div>
+      <div class="col-lg 2 col-md-2  col-sm-5 col-xs-5" style="margin-right: 50px">
+        <div class="form-group" style="margin-bottom: 10px">
+          {{ form.phone }}
+          <p>Phone</p>
+        </div>
+        <div class="form-group" style="margin-bottom: 10px">
+          {{ form.company }}
+          <p>Company</p>
+        </div>
+        <div class="form-group" style="margin-bottom: 10px">
+          {{ form.position }}
+          <p>Position</p>
+        </div>
+        <div class="form-group" style="margin-bottom: 10px">
+          {{ form.industry }}
+          <p>Industry</p>
+        </div>
+      </div>
+      <div class="col-lg 2 col-md-2  col-sm-5 col-xs-5" style="margin-right: 60px">
+        <div class="form-group" style="margin-bottom: 10px">
+          {{ form.address1 }}
+          <p>Address</p>
+        </div>
+        <div class="form-group" style="margin-bottom: 10px">
+          {{ form.city }}
+          <p>City</p>
+        </div>
+        <div class="form-group" style="margin-bottom: 10px">
+          {{ form.state }}
+          <p>State</p>
+        </div>
+        <div class="form-group" style="margin-bottom: 10px">
+          {{ form.zipcode }}
+          <p>zipcode</p>
+        </div>
+      </div>
+      <div class="col-lg 2 col-md-3  col-sm-5 col-xs-5" style="margin-right: 50px">
+        <div class="checkbox" style="margin: 10px 0 40px 0; width: 200px">
+          <p style="margin-bottom: 0">{{ form.alert }} <p>Keep in Touch Alerts</p></p>
+        </div>
+        <button class='btn' style="width: 160px; padding: 10px 10px 10px 10px; margin: 0 0 20px 0; color: #ffffff; background-color: #F1861B; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 16px" type="submit" id="create" name="submit"  label="create" value='create'>Create Contact</button>
+        <button class='btn' style="width: 160px; padding: 10px 10px 10px 10px; margin: 0 0 20px 0; color: #ffffff; background-color: #337ab7; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 16px" type="submit" id="find" name="submit" label="find" value='find'>Search Contacts</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% if contacts %}
+<div class="container" style="background-color: #ffffff; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; margin-left: 40px; margin-right: 20px; padding: 0">
+  <h2 style="margin-left: 20px; margin-top: 30px; font-size: 24px">Search Results</h2>
+  <div class="list-group" style="margin: 20px 40px 40px 40px">
+    {% for contact in contacts %}
+    <a href="{{ url_for('contact_edit', id=contact.id) }}" class="list-group-item">
+      <div style="display: flex; flex-wrap: wrap">
+        <div style="width: 180px; margin-right: 10px; margin-bottom: 10px">
+          <h4 class="mb-1">{{ contact.first_name }} {{ contact.last_name }}</h4>
+          <p class="mb-1">{{ contact.email }}</p>
+          <p>Updated: {{ contact.last_updated.strftime('%m-%d-%Y') }}</p>
+        </div>
+        <div style="width: 180px; margin-bottom: 10px">
+          <p>City: {{ contact.city }}</p>
+          <p>State: {{ contact.state }}</p>
+        </div>
+        <div style="width: 180px; margin-bottom: 10px">
+          <p>Company: {{ contact.company }}</p>
+          <p>Industry: {{ contact.industry }}</p>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+
+{% endblock %}
+<!-- <div class="checkbox-inline" style="padding-left: 0; height: 20px" label="Display Alert When Interraction with Contact is > 30 days">
+                    {{ form.alert }}
+                  </div> -->

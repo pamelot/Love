@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_field %}
+
+{% block content %}
+
+
+<div class="container" style="font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; margin-left: 50px; padding: 0; width: 300px">
+
+	<form class="ui form" method="POST" action="" style="margin-top: 60px; padding: 0 0 20px 0">
+		<h3 style="margin-bottom: 30px">Register or<a href="{{ url_for('login') }}" style="padding: 10px 8px 8px 10px">Login</a></h3>
+	  <div class="field" style="font-size: 20px">
+	  	{{ form.hidden_tag() }}
+		{% for field in form %}
+			{{ render_field(field) }}
+		{% endfor %}
+	  </div>
+	  <br>
+	  <button class='btn' style="width: 50%; color: #ffffff; background-color: #F1861B; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 16px" type="submit" id="submit">Register</button>
+	</form>
+</div>
+
+{% endblock %}
