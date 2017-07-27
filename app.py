@@ -1,5 +1,5 @@
 from flask import (Flask, g, render_template, flash, redirect, url_for, request, session)
-from flask_login import *
+from flask.ext.login import *
 
 import forms
 import models
