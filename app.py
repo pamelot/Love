@@ -13,9 +13,6 @@ import csv
 from flask.ext.bcrypt import *
 
 
-DEBUG = True
-PORT = 8000
-HOST = '0.0.0.0'
 
 app = Flask(__name__)
 app.secret_key = 'sdonsadkksdglj,dfsg'
@@ -370,4 +367,5 @@ if __name__ == '__main__':
 	        )
     except ValueError:
         pass
-    app.run(debug=DEBUG, host=HOST, port=PORT)
+    port = int(os.environ.get('PORT', 8000))
+    app.run(host='0.0.0.0', port=port)
