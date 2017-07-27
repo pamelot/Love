@@ -5,7 +5,8 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 import forms
 import models
 import datetime
-from datetime import *; from dateutil.relativedelta import *
+from datetime import *
+from dateutil.relativedelta import *
 import calendar
 from datetime import datetime as dt
 import csv
