@@ -12,3 +12,4 @@ WTForms==2.0.2
 flask-login==0.2.7
 Flask-WTF==0.14.2
 Flask_Bcrypt==0.7.1
+dateutil==2.5.3
