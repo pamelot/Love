@@ -5,14 +5,16 @@
 <style type="text/css">
             input {
               width: 180px;
-              font-size: 16px;
+              font-size: 18px;
+              margin-bottom: 0;
             }
             .checkbox input[type=checkbox] {
                 background-color: transparent;
                 font-size: 20px;
                 height: 25px;
                 width: 30px;
-                margin: 5px 5px 0 0;
+                margin: 5px 5px 5px 0;
+                padding-bottom: 5px;
                 padding-left: 0;
                 box-shadow: none;
                 border: none;
@@ -21,72 +23,72 @@
             }
 </style>
 
-<div class="container" style="background-color: #ffffff; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; margin-left: 40px; margin-right: 20px; padding: 0">
-  <h2 style="margin-left: 20px; margin-top: 30px; font-size: 24px">Create or Find Contacts</h2>
+<div class="container" style="background-image: url('http://www.spiactivities.com/wp-content/uploads/2016/01/light-blue-construction-paper-texture-2.jpg'); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-left: 40px; margin-right: 20px; padding: 0; margin-top: 10px">
+  <h2 style="margin-left: 40px; margin-top: 30px; font-size: 36px; color: #d4f3f5">Create or Find Contacts</h2>
   <p style="background-color: #FFF000; margin-left: 20px; width: 200px">{{ message }}</p>
-  <div class="row justify-content-between" style="color: #F1861B; padding-left: 20px; margin-top: 40px; margin-bottom: 60px; border-radius: .2em; margin-left: 0">
+  <div class="row justify-content-between" style="color: #F1861B; padding-left: 20px; margin-top: 40px; margin-bottom: 40px; border-radius: .2em; margin-left: 0">
     <form action='contact_search' class="form-inline lead-big" role="form" method='POST' style="font-size: 16px">
       {{ form.hidden_tag() }}
       <div class="col-lg 2 col-md-2  col-sm-5 col-xs-5" style="margin-right: 50px">
-        <div class="form-group" style="margin-bottom: 10px">
+        <div class="form-group" style="margin-bottom: 20px">
           {{ form.first_name }}
-          <p>First Name</p>
+          <p style="font-size: 20px; color: #d4f3f5">First Name</p>
         </div>
-        <div class="form-group" style="margin-bottom: 10px">
+        <div class="form-group" style="margin-bottom: 20px">
           {{ form.middle_name }}
-          <p>Middle Name</p>
+          <p style="font-size: 20px; color: #d4f3f5">Middle Name</p>
         </div>
-        <div class="form-group" style="margin-bottom: 10px">
+        <div class="form-group" style="margin-bottom: 20px">
           {{ form.last_name }}
-          <p>Last Name</p>
+          <p style="font-size: 20px; color: #d4f3f5">Last Name</p>
         </div>
-        <div class="form-group" style="margin-bottom: 10px">
+        <div class="form-group" style="margin-bottom: 20px">
           {{ form.email }}
-          <p>Email</p>
+          <p style="font-size: 20px; color: #d4f3f5">Email</p>
         </div>
       </div>
       <div class="col-lg 2 col-md-2  col-sm-5 col-xs-5" style="margin-right: 50px">
-        <div class="form-group" style="margin-bottom: 10px">
+        <div class="form-group" style="margin-bottom: 20px">
           {{ form.phone }}
-          <p>Phone</p>
+          <p style="font-size: 20px; color: #d4f3f5">Phone</p>
         </div>
-        <div class="form-group" style="margin-bottom: 10px">
+        <div class="form-group" style="margin-bottom: 20px">
           {{ form.company }}
-          <p>Company</p>
+          <p style="font-size: 20px; color: #d4f3f5">Company</p>
         </div>
-        <div class="form-group" style="margin-bottom: 10px">
+        <div class="form-group" style="margin-bottom: 20px">
           {{ form.position }}
-          <p>Position</p>
+          <p style="font-size: 20px; color: #d4f3f5">Position</p>
         </div>
-        <div class="form-group" style="margin-bottom: 10px">
+        <div class="form-group" style="margin-bottom: 20px">
           {{ form.industry }}
-          <p>Industry</p>
+          <p style="font-size: 20px; color: #d4f3f5">Industry</p>
         </div>
       </div>
       <div class="col-lg 2 col-md-2  col-sm-5 col-xs-5" style="margin-right: 60px">
-        <div class="form-group" style="margin-bottom: 10px">
+        <div class="form-group" style="margin-bottom: 20px">
           {{ form.address1 }}
-          <p>Address</p>
+          <p style="font-size: 20px; color: #d4f3f5">Address</p>
         </div>
-        <div class="form-group" style="margin-bottom: 10px">
+        <div class="form-group" style="margin-bottom: 20px">
           {{ form.city }}
-          <p>City</p>
+          <p style="font-size: 20px; color: #d4f3f5">City</p>
         </div>
-        <div class="form-group" style="margin-bottom: 10px">
+        <div class="form-group" style="margin-bottom: 20px">
           {{ form.state }}
-          <p>State</p>
+          <p style="font-size: 20px; color: #d4f3f5">State</p>
         </div>
-        <div class="form-group" style="margin-bottom: 10px">
+        <div class="form-group" style="margin-bottom: 20px">
           {{ form.zipcode }}
-          <p>zipcode</p>
+          <p style="font-size: 20px; color: #d4f3f5">Zipcode</p>
         </div>
       </div>
-      <div class="col-lg 2 col-md-3  col-sm-5 col-xs-5" style="margin-right: 50px">
+      <div class="col-lg 2 col-md-3  col-sm-5 col-xs-5" style="margin-right: 50px; margin-left: 10px">
         <div class="checkbox" style="margin: 10px 0 40px 0; width: 200px">
-          <p style="margin-bottom: 0">{{ form.alert }} <p>Keep in Touch Alerts</p></p>
+          <p style="margin-bottom: 0">{{ form.alert }} <p style="font-size: 20px; color: #d4f3f5">Keep in Touch Alerts</p></p>
         </div>
-        <button class='btn' style="width: 160px; padding: 10px 10px 10px 10px; margin: 0 0 20px 0; color: #ffffff; background-color: #F1861B; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 16px" type="submit" id="create" name="submit"  label="create" value='create'>Create Contact</button>
-        <button class='btn' style="width: 160px; padding: 10px 10px 10px 10px; margin: 0 0 20px 0; color: #ffffff; background-color: #337ab7; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 16px" type="submit" id="find" name="submit" label="find" value='find'>Search Contacts</button>
+        <button class='btn' style="width: 180px; padding: 10px 10px 10px 10px; margin: 0 0 20px 0; color: #ffffff; background-color: #F1861B; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 18px" type="submit" id="create" name="submit"  label="create" value='create'>Create Contact</button>
+        <button class='btn' style="width: 180px; padding: 10px 10px 10px 10px; margin: 0 0 20px 0; color: #ffffff; background-color: #337ab7; font-family: 'Varela Round', Helvetica Neue, Helvetica, Arial, serif; font-size: 18px" type="submit" id="find" name="submit" label="find" value='find'>Search Contacts</button>
       </div>
     </form>
   </div>
